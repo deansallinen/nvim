@@ -8,4 +8,5 @@ return {
     event = 'VeryLazy',
     opts = {},
   },
+  { 'numToStr/Comment.nvim', opts = {} }, -- comments using `gcc` that work in all files
 }

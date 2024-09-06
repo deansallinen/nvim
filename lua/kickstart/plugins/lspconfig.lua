@@ -11,6 +11,7 @@ return {
       },
     },
   },
+  { 'j-hui/fidget.nvim', opts = {} }, -- notifications - used for LSP connection
   { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
   {
     'dundalek/lazy-lsp.nvim',
@@ -29,8 +30,6 @@ return {
       require('lazy-lsp').setup {
         prefer_local = true,
         excluded_servers = {
-          -- 'bazelrc_lsp', -- seems to be broken
-          -- 'als', -- silence deprecated warning
           'ccls', -- prefer clangd
           'denols', -- prefer eslint and tsserver
           'docker_compose_language_service', -- yamlls should be enough?
@@ -40,11 +39,9 @@ return {
           'rnix', -- archived on Jan 25, 2024
           'scry', -- archived on Jun 1, 2023
           'tailwindcss', -- associates with too many filetypes
-          'tsserver', -- deprecated
         },
         preferred_servers = {
           nix = { 'nixd' },
-          -- typescriptreact = { 'eslint' },
           svelte = { 'svelte' },
         },
         -- Override config for specific servers that will passed down to lspconfig setup.

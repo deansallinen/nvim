@@ -30,6 +30,9 @@ return {
       format_after_save = {
         lsp_fallback = true,
       },
+      default_format_opts = {
+        stop_after_first = true,
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         nix = { 'alejandra' },
@@ -39,9 +42,9 @@ return {
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         -- javascript = { { 'prettierd', 'prettier' } },
-        javascript = { { 'prettierd', 'prettier' } },
-        typescript = { { 'prettierd', 'prettier' } },
-        typescriptreact = { { 'prettierd', 'prettier' } },
+        javascript = { 'prettierd', 'prettier' },
+        typescript = { 'prettierd', 'prettier' },
+        typescriptreact = { 'prettierd', 'prettier' },
       },
     },
   },
