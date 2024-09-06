@@ -5,22 +5,19 @@
 
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  { 'numToStr/Comment.nvim', opts = {} }, -- "gc" to comment visual regions/lines
+  -- { 'numToStr/Comment.nvim', opts = {} }, -- "gc" to comment visual regions/lines
 
   require 'kickstart.plugins.gitsigns',
-  require 'kickstart/plugins/which-key',
-  require 'kickstart/plugins/telescope',
-  require 'kickstart/plugins/lspconfig',
-
-  { 'folke/lazydev.nvim', ft = 'lua', opts = {} },
-
-  require 'kickstart/plugins/conform',
-  require 'kickstart/plugins/cmp',
-  require 'kickstart/plugins/catppuccin',
-  require 'kickstart/plugins/filetree',
-  require 'kickstart/plugins/todo-comments',
-  require 'kickstart/plugins/mini',
-  require 'kickstart/plugins/treesitter',
+  require 'kickstart.plugins.which-key',
+  require 'kickstart.plugins.telescope',
+  require 'kickstart.plugins.lspconfig',
+  require 'kickstart.plugins.conform',
+  require 'kickstart.plugins.cmp',
+  require 'kickstart.plugins.catppuccin',
+  require 'kickstart.plugins.filetree',
+  require 'kickstart.plugins.todo-comments',
+  require 'kickstart.plugins.mini',
+  require 'kickstart.plugins.treesitter',
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
