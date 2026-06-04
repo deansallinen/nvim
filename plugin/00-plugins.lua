@@ -13,7 +13,6 @@ vim.pack.add {
   gh 'kylechui/nvim-surround',
   gh 'tpope/vim-repeat',
   gh 'mustache/vim-mustache-handlebars',
-  gh 'junegunn/fzf.vim',
   gh 'salkin-mada/openscad.nvim',
   'https://codeberg.org/andyg/leap.nvim',
 }
@@ -75,7 +74,7 @@ statusline.setup {
       local filename = statusline.section_filename { trunc_width = 140 }
       local fileinfo = statusline.section_fileinfo { trunc_width = 120 }
       local location = '%2l:%-2v'
-      
+
       -- Show LSP progress if active, otherwise show attached LSP
       local lsp_status = vim.lsp.status()
       if lsp_status ~= '' then
