@@ -5,6 +5,7 @@ vim.pack.add {
   { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' },
   gh 'folke/lazydev.nvim',
   gh 'nvim-lua/plenary.nvim',
+  gh 'neovim/nvim-lspconfig',
   gh 'pmizio/typescript-tools.nvim',
 }
 
@@ -104,6 +105,18 @@ vim.diagnostic.config {
 -- LSP capabilities from blink.cmp
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 vim.lsp.config('*', { capabilities = capabilities })
+
+-- Simple :LspInfo command (replacement for nvim-lspconfig's)
+vim.api.nvim_create_user_command('LspInfo', function()
+  local clients = vim.lsp.get_clients { bufnr = 0 }
+  if #clients == 0 then
+    print 'No LSP clients attached'
+  else
+    for _, client in ipairs(clients) do
+      print(string.format('%s (id: %d)', client.name, client.id))
+    end
+  end
+end, { desc = 'Show attached LSP clients' })
 
 -- Enable LSP servers
 vim.lsp.enable {
