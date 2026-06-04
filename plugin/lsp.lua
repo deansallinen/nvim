@@ -8,6 +8,7 @@ vim.pack.add {
   gh 'j-hui/fidget.nvim',
   gh 'nvim-lua/plenary.nvim',
   gh 'neovim/nvim-lspconfig',
+  gh 'pmizio/typescript-tools.nvim',
 }
 
 -- Mason
@@ -42,19 +43,11 @@ require('lazydev').setup {
 -- Fidget (LSP status)
 require('fidget').setup()
 
--- TypeScript tools: lazy loaded on ts/js filetypes
-local ts_filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'typescript.tsx', 'javascript.jsx' }
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = ts_filetypes,
-  once = true,
-  callback = function()
-    vim.pack.add { gh 'pmizio/typescript-tools.nvim' }
-    require('typescript-tools').setup {
-      filetypes = ts_filetypes,
-      settings = { formatter_enable = false },
-    }
-  end,
-})
+-- TypeScript tools
+require('typescript-tools').setup {
+  filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'typescript.tsx', 'javascript.jsx' },
+  settings = { formatter_enable = false },
+}
 
 -- LSP attach autocommand
 vim.api.nvim_create_autocmd('LspAttach', {
