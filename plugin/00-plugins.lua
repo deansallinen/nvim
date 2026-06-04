@@ -4,7 +4,7 @@
 vim.pack.add {
   gh 'NMAC427/guess-indent.nvim',
   gh 'folke/which-key.nvim',
-  gh 'nvim-treesitter/nvim-treesitter',
+
   gh 'catppuccin/nvim',
   gh 'folke/todo-comments.nvim',
   gh 'nvim-mini/mini.nvim',
@@ -23,7 +23,7 @@ if vim.g.have_nerd_font then
 end
 
 -- Guess indent
-require('guess-indent').setup()
+require('guess-indent').setup {}
 
 -- Which-key
 require('which-key').setup {

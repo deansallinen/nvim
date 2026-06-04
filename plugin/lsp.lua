@@ -2,20 +2,17 @@
 
 vim.pack.add {
   gh 'mason-org/mason.nvim',
-  { src = gh 'L3MON4D3/LuaSnip', version = vim.version.range '2.*' },
   { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' },
   gh 'folke/lazydev.nvim',
   gh 'j-hui/fidget.nvim',
   gh 'nvim-lua/plenary.nvim',
-  gh 'neovim/nvim-lspconfig',
   gh 'pmizio/typescript-tools.nvim',
 }
 
 -- Mason
 require('mason').setup()
 
--- Completion: blink.cmp + LuaSnip
-require('luasnip').setup()
+-- Completion: blink.cmp
 require('blink.cmp').setup {
   keymap = { preset = 'default' },
   appearance = { nerd_font_variant = 'mono' },
@@ -23,12 +20,11 @@ require('blink.cmp').setup {
     documentation = { auto_show = false, auto_show_delay_ms = 500 },
   },
   sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+    default = { 'lsp', 'path', 'buffer', 'lazydev' },
     providers = {
       lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
     },
   },
-  snippets = { preset = 'luasnip' },
   fuzzy = { implementation = 'lua' },
   signature = { enabled = true },
 }
