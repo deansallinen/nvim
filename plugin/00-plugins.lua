@@ -1,17 +1,31 @@
 -- Plugin installation and small configs
 -- Plugins with larger configs live in their own domain files
 
--- Guess indent
-vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
-require('guess-indent').setup {}
+vim.pack.add {
+  gh 'NMAC427/guess-indent.nvim',
+  gh 'folke/which-key.nvim',
+  gh 'nvim-treesitter/nvim-treesitter',
+  gh 'catppuccin/nvim',
+  gh 'folke/todo-comments.nvim',
+  gh 'nvim-mini/mini.nvim',
+  gh 'windwp/nvim-autopairs',
+  gh 'lukas-reineke/indent-blankline.nvim',
+  gh 'kylechui/nvim-surround',
+  gh 'tpope/vim-repeat',
+  gh 'mustache/vim-mustache-handlebars',
+  gh 'junegunn/fzf.vim',
+  gh 'salkin-mada/openscad.nvim',
+  'https://codeberg.org/andyg/leap.nvim',
+}
 
--- Icons
 if vim.g.have_nerd_font then
   vim.pack.add { gh 'nvim-tree/nvim-web-devicons' }
 end
 
+-- Guess indent
+require('guess-indent').setup()
+
 -- Which-key
-vim.pack.add { gh 'folke/which-key.nvim' }
 require('which-key').setup {
   delay = 0,
   icons = { mappings = vim.g.have_nerd_font },
@@ -24,7 +38,6 @@ require('which-key').setup {
 }
 
 -- Treesitter
-vim.pack.add { gh 'nvim-treesitter/nvim-treesitter' }
 vim.api.nvim_create_autocmd('FileType', {
   callback = function(args)
     pcall(vim.treesitter.start, args.buf)
@@ -32,7 +45,6 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Colorscheme
-vim.pack.add { gh 'catppuccin/nvim' }
 require('catppuccin').setup {
   integrations = {
     indent_blankline = {
@@ -45,11 +57,9 @@ require('catppuccin').setup {
 vim.cmd.colorscheme 'catppuccin'
 
 -- Todo comments
-vim.pack.add { gh 'folke/todo-comments.nvim' }
 require('todo-comments').setup { signs = false }
 
 -- Mini.nvim
-vim.pack.add { gh 'nvim-mini/mini.nvim' }
 require('mini.ai').setup { n_lines = 500 }
 local statusline = require 'mini.statusline'
 statusline.setup { use_icons = vim.g.have_nerd_font }
@@ -58,28 +68,17 @@ statusline.section_location = function()
 end
 
 -- Autopairs
-vim.pack.add { gh 'windwp/nvim-autopairs' }
-require('nvim-autopairs').setup {}
+require('nvim-autopairs').setup()
 
 -- Indent guides
-vim.pack.add { gh 'lukas-reineke/indent-blankline.nvim' }
-require('ibl').setup {}
+require('ibl').setup()
 
--- Surround
-vim.pack.add { gh 'kylechui/nvim-surround' }
-require('nvim-surround').setup {}
+-- Surround (auto-initializes via plugin/ script)
 
--- Leap (fast motion)
-vim.pack.add { 'https://github.com/tpope/vim-repeat' }
-vim.pack.add { 'https://codeberg.org/andyg/leap.nvim' }
+-- Leap
 vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
 
--- Mustache/Handlebars
-vim.pack.add { gh 'mustache/vim-mustache-handlebars' }
-
 -- OpenSCAD
-vim.pack.add { gh 'junegunn/fzf.vim' }
-vim.pack.add { gh 'salkin-mada/openscad.nvim' }
 vim.g.openscad_load_snippets = true
 require 'openscad'
 

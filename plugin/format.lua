@@ -1,8 +1,11 @@
 -- Code formatting and linting
 
--- Conform (formatting)
-vim.pack.add { gh 'stevearc/conform.nvim' }
+vim.pack.add {
+  gh 'stevearc/conform.nvim',
+  gh 'mfussenegger/nvim-lint',
+}
 
+-- Conform (formatting)
 require('conform').setup {
   log_level = vim.log.levels.DEBUG,
   notify_on_error = true,
@@ -51,8 +54,6 @@ vim.keymap.set('', '<leader>f', function()
 end, { desc = '[F]ormat buffer' })
 
 -- nvim-lint (linting)
-vim.pack.add { gh 'mfussenegger/nvim-lint' }
-
 local lint = require 'lint'
 lint.linters_by_ft = {
   lua = { 'selene' },

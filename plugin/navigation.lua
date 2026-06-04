@@ -1,12 +1,13 @@
 -- Navigation: Telescope and Neo-tree
 
--- Telescope dependencies
 local has_make = vim.fn.executable 'make' == 1
+
 vim.pack.add {
   gh 'nvim-lua/plenary.nvim',
   gh 'nvim-telescope/telescope-ui-select.nvim',
   gh 'nvim-telescope/telescope.nvim',
 }
+
 if has_make then
   vim.pack.add { gh 'nvim-telescope/telescope-fzf-native.nvim' }
 end

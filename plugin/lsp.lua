@@ -1,16 +1,20 @@
 -- LSP, completion, and language intelligence
 
--- Mason (package manager for LSP servers)
-vim.pack.add { gh 'mason-org/mason.nvim' }
-require('mason').setup {}
-
--- Completion: blink.cmp + LuaSnip
 vim.pack.add {
+  gh 'mason-org/mason.nvim',
   { src = gh 'L3MON4D3/LuaSnip', version = vim.version.range '2.*' },
   { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' },
+  gh 'folke/lazydev.nvim',
+  gh 'j-hui/fidget.nvim',
+  gh 'nvim-lua/plenary.nvim',
+  gh 'neovim/nvim-lspconfig',
 }
 
-require('luasnip').setup {}
+-- Mason
+require('mason').setup()
+
+-- Completion: blink.cmp + LuaSnip
+require('luasnip').setup()
 require('blink.cmp').setup {
   keymap = { preset = 'default' },
   appearance = { nerd_font_variant = 'mono' },
@@ -29,7 +33,6 @@ require('blink.cmp').setup {
 }
 
 -- Lazydev (Lua LSP for Neovim config)
-vim.pack.add { gh 'folke/lazydev.nvim' }
 require('lazydev').setup {
   library = {
     { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
@@ -37,13 +40,9 @@ require('lazydev').setup {
 }
 
 -- Fidget (LSP status)
-vim.pack.add { gh 'j-hui/fidget.nvim' }
-require('fidget').setup {}
+require('fidget').setup()
 
 -- TypeScript tools: lazy loaded on ts/js filetypes
-vim.pack.add { gh 'nvim-lua/plenary.nvim' }
-vim.pack.add { gh 'neovim/nvim-lspconfig' }
-
 local ts_filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'typescript.tsx', 'javascript.jsx' }
 vim.api.nvim_create_autocmd('FileType', {
   pattern = ts_filetypes,
