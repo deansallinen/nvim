@@ -5,7 +5,6 @@ vim.pack.add {
   gh 'NMAC427/guess-indent.nvim',
   gh 'folke/which-key.nvim',
   gh 'nvim-treesitter/nvim-treesitter',
-
   gh 'catppuccin/nvim',
   gh 'folke/todo-comments.nvim',
   gh 'nvim-mini/mini.nvim',
@@ -37,12 +36,6 @@ require('which-key').setup {
   },
 }
 
--- Treesitter
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function(args)
-    pcall(vim.treesitter.start, args.buf)
-  end,
-})
 
 -- Colorscheme
 require('catppuccin').setup {
