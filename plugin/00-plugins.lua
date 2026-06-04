@@ -1,10 +1,6 @@
 -- Plugin installation and small configs
 -- Plugins with larger configs live in their own domain files
 
-local function gh(repo)
-  return 'https://github.com/' .. repo
-end
-
 -- Guess indent
 vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
 require('guess-indent').setup {}

@@ -1,9 +1,5 @@
 -- Navigation: Telescope and Neo-tree
 
-local function gh(repo)
-  return 'https://github.com/' .. repo
-end
-
 -- Telescope dependencies
 local has_make = vim.fn.executable 'make' == 1
 vim.pack.add {

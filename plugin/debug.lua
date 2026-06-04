@@ -1,9 +1,5 @@
 -- Debugging with DAP
 
-local function gh(repo)
-  return 'https://github.com/' .. repo
-end
-
 -- Dependencies
 vim.pack.add { gh 'nvim-neotest/nvim-nio' }
 vim.pack.add { gh 'rcarriga/nvim-dap-ui' }

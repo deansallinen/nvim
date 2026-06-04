@@ -5,14 +5,14 @@ My personal Neovim configuration using `vim.pack` (Neovim 0.12+).
 ## Structure
 
 ```
-init.lua          -- Options, globals, basic keymaps
-lua/
-├── plugins.lua   -- Plugin installation + small configs
-├── navigation.lua -- Telescope, Neo-tree
-├── git.lua       -- Gitsigns
-├── lsp.lua       -- LSP, Mason, completion
-├── format.lua    -- Conform, nvim-lint
-└── debug.lua     -- DAP debugging
+init.lua              -- Options, globals, keymaps, PackChanged hooks
+plugin/               -- Auto-sourced alphabetically by Neovim
+├── 00-plugins.lua    -- Core plugins: colorscheme, treesitter, mini, etc.
+├── debug.lua         -- DAP debugging
+├── format.lua        -- Conform, nvim-lint
+├── git.lua           -- Gitsigns
+├── lsp.lua           -- LSP, Mason, completion
+└── navigation.lua    -- Telescope, Neo-tree
 ```
 
 ## Plugins I've Tried

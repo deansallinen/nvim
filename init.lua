@@ -9,6 +9,11 @@ vim.g.maplocalleader = ' '
 -- Globals
 vim.g.have_nerd_font = true
 
+-- Helper for GitHub URLs (used by plugin/ files)
+function _G.gh(repo)
+  return 'https://github.com/' .. repo
+end
+
 -- Options
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -59,10 +64,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Load modules
-require 'plugins'
-require 'navigation'
-require 'git'
-require 'lsp'
-require 'format'
-require 'debug'
+-- PackChanged hook for plugin post-update actions
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    -- Update treesitter parsers when nvim-treesitter is updated
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not ev.data.active then
+        vim.cmd.packadd 'nvim-treesitter'
+      end
+      vim.cmd 'TSUpdate'
+    end
+  end,
+})
+
+-- plugin/ files are auto-sourced alphabetically

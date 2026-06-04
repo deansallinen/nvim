@@ -1,9 +1,5 @@
 -- LSP, completion, and language intelligence
 
-local function gh(repo)
-  return 'https://github.com/' .. repo
-end
-
 -- Mason (package manager for LSP servers)
 vim.pack.add { gh 'mason-org/mason.nvim' }
 require('mason').setup {}

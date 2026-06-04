@@ -1,9 +1,5 @@
 -- Code formatting and linting
 
-local function gh(repo)
-  return 'https://github.com/' .. repo
-end
-
 -- Conform (formatting)
 vim.pack.add { gh 'stevearc/conform.nvim' }
 

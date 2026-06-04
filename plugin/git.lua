@@ -1,9 +1,5 @@
 -- Git integration: Gitsigns
 
-local function gh(repo)
-  return 'https://github.com/' .. repo
-end
-
 vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
 
 require('gitsigns').setup {
