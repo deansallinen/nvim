@@ -4,7 +4,6 @@ vim.pack.add {
   gh 'mason-org/mason.nvim',
   { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' },
   gh 'folke/lazydev.nvim',
-  gh 'j-hui/fidget.nvim',
   gh 'nvim-lua/plenary.nvim',
   gh 'pmizio/typescript-tools.nvim',
 }
@@ -36,8 +35,6 @@ require('lazydev').setup {
   },
 }
 
--- Fidget (LSP status)
-require('fidget').setup()
 
 -- TypeScript tools
 require('typescript-tools').setup {

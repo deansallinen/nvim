@@ -61,11 +61,34 @@ require('todo-comments').setup { signs = false }
 
 -- Mini.nvim
 require('mini.ai').setup { n_lines = 500 }
+
 local statusline = require 'mini.statusline'
-statusline.setup { use_icons = vim.g.have_nerd_font }
-statusline.section_location = function()
-  return '%2l:%-2v'
-end
+statusline.setup {
+  use_icons = vim.g.have_nerd_font,
+  content = {
+    active = function()
+      local mode, mode_hl = statusline.section_mode { trunc_width = 120 }
+      local git = statusline.section_git { trunc_width = 40 }
+      local diff = statusline.section_diff { trunc_width = 75 }
+      local diagnostics = statusline.section_diagnostics { trunc_width = 75 }
+      local lsp = vim.lsp.status()
+      local filename = statusline.section_filename { trunc_width = 140 }
+      local fileinfo = statusline.section_fileinfo { trunc_width = 120 }
+      local location = '%2l:%-2v'
+
+      return statusline.combine_groups {
+        { hl = mode_hl, strings = { mode } },
+        { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics } },
+        '%<', -- truncate point
+        { hl = 'MiniStatuslineFilename', strings = { filename } },
+        '%=', -- right align
+        { hl = 'MiniStatuslineDevinfo', strings = { lsp } },
+        { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+        { hl = mode_hl, strings = { location } },
+      }
+    end,
+  },
+}
 
 -- Autopairs
 require('nvim-autopairs').setup()
