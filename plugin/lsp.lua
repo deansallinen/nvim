@@ -40,7 +40,8 @@ require('lazydev').setup {
 vim.pack.add { gh 'j-hui/fidget.nvim' }
 require('fidget').setup {}
 
--- TypeScript tools
+-- TypeScript tools (plenary is a dependency)
+vim.pack.add { gh 'nvim-lua/plenary.nvim' }
 vim.pack.add { gh 'neovim/nvim-lspconfig' }
 vim.pack.add { gh 'pmizio/typescript-tools.nvim' }
 require('typescript-tools').setup {
