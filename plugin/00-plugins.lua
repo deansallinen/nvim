@@ -4,6 +4,7 @@
 vim.pack.add {
   gh 'NMAC427/guess-indent.nvim',
   gh 'folke/which-key.nvim',
+  gh 'nvim-treesitter/nvim-treesitter',
 
   gh 'catppuccin/nvim',
   gh 'folke/todo-comments.nvim',
