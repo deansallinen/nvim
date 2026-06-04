@@ -5,11 +5,11 @@ local has_make = vim.fn.executable 'make' == 1
 vim.pack.add {
   gh 'nvim-lua/plenary.nvim',
   gh 'nvim-telescope/telescope-ui-select.nvim',
+  gh 'nvim-telescope/telescope.nvim',
 }
 if has_make then
   vim.pack.add { gh 'nvim-telescope/telescope-fzf-native.nvim' }
 end
-vim.pack.add { gh 'nvim-telescope/telescope.nvim' }
 
 -- Telescope setup
 require('telescope').setup {
@@ -55,21 +55,29 @@ vim.keymap.set('n', '<leader>sn', function()
   builtin.find_files { cwd = vim.fn.stdpath 'config' }
 end, { desc = '[S]earch [N]eovim files' })
 
--- Neo-tree dependencies
-vim.pack.add { gh 'MunifTanjim/nui.nvim' }
-vim.pack.add { gh 'nvim-neo-tree/neo-tree.nvim' }
-
--- Neo-tree setup
-require('neo-tree').setup {
-  filesystem = {
-    window = {
-      mappings = {
-        ['\\'] = 'close_window',
+-- Neo-tree: lazy loaded on first keymap use
+local function load_neotree()
+  vim.pack.add { gh 'MunifTanjim/nui.nvim', gh 'nvim-neo-tree/neo-tree.nvim' }
+  require('neo-tree').setup {
+    filesystem = {
+      window = {
+        mappings = {
+          ['\\'] = 'close_window',
+        },
       },
     },
-  },
-}
+  }
+  -- Replace keymaps with direct commands after loading
+  vim.keymap.set('n', '\\', '<cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal', silent = true })
+  vim.keymap.set('n', '<leader>n', '<cmd>Neotree toggle<CR>', { desc = 'NeoTree toggle', silent = true })
+end
 
--- Neo-tree keymaps
-vim.keymap.set('n', '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal', silent = true })
-vim.keymap.set('n', '<leader>n', ':Neotree toggle<CR>', { desc = 'NeoTree toggle', silent = true })
+vim.keymap.set('n', '\\', function()
+  load_neotree()
+  vim.cmd 'Neotree reveal'
+end, { desc = 'NeoTree reveal', silent = true })
+
+vim.keymap.set('n', '<leader>n', function()
+  load_neotree()
+  vim.cmd 'Neotree toggle'
+end, { desc = 'NeoTree toggle', silent = true })
